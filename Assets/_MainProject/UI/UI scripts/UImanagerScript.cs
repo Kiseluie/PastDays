@@ -7,6 +7,7 @@ public class UImanagerScript : MonoBehaviour
 {
     public GameObject pause;
     public GameObject exitQ;
+    public GameObject LaterObject;
 
 
     void Start()
@@ -25,6 +26,8 @@ public class UImanagerScript : MonoBehaviour
     public void PauseF()
     {
         pause.SetActive(false);
+        ExitQf();
+        LaterObject.SetActive(false);
     }
     public void ExitQt()
     {
@@ -37,5 +40,9 @@ public class UImanagerScript : MonoBehaviour
     public void Exit()
     {
         SceneManager.LoadScene(0);
+    }
+    public void Reload()
+    {
+        Application.LoadLevel(Application.loadedLevel);
     }
 }
