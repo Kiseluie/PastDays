@@ -7,7 +7,6 @@ public class UImanagerScript : MonoBehaviour
 {
     public GameObject pause;
     public GameObject exitQ;
-    public GameObject LaterObject;
 
 
     void Start()
@@ -18,16 +17,16 @@ public class UImanagerScript : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             pause.SetActive(true);
+            Cursor.visible = true;
         }
     }
     public void PauseF()
     {
         pause.SetActive(false);
-        ExitQf();
-        LaterObject.SetActive(false);
+        Cursor.visible = false;
     }
     public void ExitQt()
     {
