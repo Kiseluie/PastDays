@@ -43,6 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1163050998835866424}
   - component: {fileID: 7585592028333988308}
+  - component: {fileID: 5167198672055547970}
   m_Layer: 0
   m_Name: Spot
   m_TagString: Untagged
@@ -127,6 +128,18 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &5167198672055547970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6797007162831265083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcabeab222213d14694bbd671270f876, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8982479125506524714
 GameObject:
   m_ObjectHideFlags: 0
