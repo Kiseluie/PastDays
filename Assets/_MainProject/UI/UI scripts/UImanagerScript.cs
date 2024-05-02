@@ -12,29 +12,34 @@ public class UImanagerScript : MonoBehaviour
     void Start()
     {
         pause.SetActive(false);
-        ExitQf();
+        exitQ.SetActive(false);
+        pause.SetActive(false);
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            pause.SetActive(true);
-            Cursor.visible = true;
+            PauseT();
+            //Cursor.visible = true;
+            GetComponent<FirstPersonController>().enabled = false;
         }
     }
     public void PauseF()
     {
         pause.SetActive(false);
-        Cursor.visible = false;
+        //Cursor.visible = false;
+        GetComponent<FirstPersonController>().enabled = true;
     }
     public void ExitQt()
     {
         exitQ.SetActive(true);
+        pause.SetActive(false);
     }
     public void ExitQf()
     {
         exitQ.SetActive(false);
+        pause.SetActive(true);
     }
     public void Exit()
     {
@@ -43,5 +48,9 @@ public class UImanagerScript : MonoBehaviour
     public void Reload()
     {
         Application.LoadLevel(Application.loadedLevel);
+    }
+    public void PauseT()
+    {
+        pause.SetActive(true);
     }
 }
