@@ -18,7 +18,7 @@ public class UImanagerScript : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseT();
             //Cursor.visible = true;
