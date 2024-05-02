@@ -7,8 +7,12 @@ public class Flashlight : MonoBehaviour
 {
     //public RectTransform valueRectTransform;
     public TextMeshProUGUI batteryPercentage;
+    public TextMeshProUGUI batteryCountUI;
     public float value = 100;
     public float DischargeSpeed = 1f;
+    public int batteryCount = 0;
+    public int maxBatteryCount = 4;
+    public float ChargeAmount = 50;
 
     private bool isFlickering = false;
     private float timer = 0;
@@ -16,12 +20,15 @@ public class Flashlight : MonoBehaviour
     private bool FlashlightIsOn = true;
     private float _maxValue;
     private float outputNumber;
+    private GameObject maxUI;
     private GameObject flashlightObject;
     // Start is called before the first frame update
     void Start()
     {
+
         _maxValue = value;
         DrawBatteryBar();
+        maxUI = GameObject.Find("batteryMax");
         flashlightObject = GameObject.Find("Flashlight");
     }
 
@@ -29,13 +36,34 @@ public class Flashlight : MonoBehaviour
     void Update()
     {
         FlashlightDischarge();
+        AddCharge(ChargeAmount);
     }
 
-    public void AddCharge(float amount)
+    public void addBattery()
     {
-        value += amount;
-        value = Mathf.Clamp(value, 0, _maxValue);
+        batteryCount++;
         DrawBatteryBar();
+    }
+
+    private void AddCharge(float amount)
+    {
+        if (Input.GetKeyDown(KeyCode.R) && batteryCount > 0)
+        {
+            value += amount;
+            value = Mathf.Clamp(value, 0, _maxValue);
+            DrawBatteryBar();
+            FlashlightIsOn = true;
+            flashlightObject.SetActive(FlashlightIsOn);
+            batteryCount--;
+        }
+        if (batteryCount == maxBatteryCount)
+        {
+            maxUI.SetActive(true);
+        }
+        else
+        {
+            maxUI.SetActive(false);
+        }
     }
 
     private void FlashlightDischarge()
@@ -48,15 +76,15 @@ public class Flashlight : MonoBehaviour
         if(value <= 0)
         {
             FlashlightIsOn = false;
+            flashlightObject.SetActive(FlashlightIsOn);
         }
         else
         {
-            FlashlightIsOn = true;
             value -= DischargeSpeed * Time.deltaTime;
             DrawBatteryBar();
         }
 
-        flashlightObject.SetActive(FlashlightIsOn);   
+        
     }
 
     private void DrawBatteryBar()
@@ -64,6 +92,7 @@ public class Flashlight : MonoBehaviour
         outputNumber = Mathf.Round(value);
         //valueRectTransform.anchorMax = new Vector2(value / _maxValue, 1);
         batteryPercentage.text = outputNumber.ToString() + "%";
+        batteryCountUI.text = batteryCount.ToString();
     }
 
     IEnumerator FlickeringLight()

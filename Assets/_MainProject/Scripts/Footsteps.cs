@@ -46,7 +46,7 @@ public class Footsteps : MonoBehaviour
     private void Update()
     {
         StopMusic();
-        SprintChange();
+        StateChange();
     }
 
     private void StopMusic()
@@ -57,16 +57,30 @@ public class Footsteps : MonoBehaviour
             currentSound.Stop();
         }
     }
-    private void SprintChange()
+    private void StateChange()
     {
-        if (_playerFPC.enableSprint && Input.GetKeyDown(KeyCode.LeftShift))
+        //sprint
+        if (_playerFPC.isSprinting)
         {
             currentSound.pitch = 1.75f;
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (!_playerFPC.isSprinting)
         {
             currentSound.pitch = 1f;
+        }
+
+        //crouch
+        if (_playerFPC.isCrouched)
+        {
+            currentSound.pitch = 0.8f;
+            currentSound.volume = 0.2f;
+        }
+
+        if (!_playerFPC.isCrouched && !_playerFPC.isSprinting)
+        {
+            currentSound.pitch = 1f;
+            currentSound.volume = 0.4f;
         }
     }
 }
