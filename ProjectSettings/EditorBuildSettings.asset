@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/_MainProject/Scenes/StartMenu.unity
     guid: d209e6414c935554d9477cfdc0ee432d
   - enabled: 1
-    path: Assets/_MainProject/Scenes/SampleScene.unity
+    path: Assets/_MainProject/Scenes/TimursDesign.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
