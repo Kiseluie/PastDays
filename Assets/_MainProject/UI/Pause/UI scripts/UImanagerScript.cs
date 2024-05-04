@@ -8,12 +8,17 @@ public class UImanagerScript : MonoBehaviour
     public GameObject pause;
     public GameObject exitQ;
 
-
+    private GameObject PlayerController;
     void Start()
     {
+        PlayerController = GameObject.Find("FirstPersonController");
+
         pause.SetActive(false);
         exitQ.SetActive(false);
         pause.SetActive(false);
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
@@ -21,15 +26,17 @@ public class UImanagerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseT();
-            //Cursor.visible = true;
-            GetComponent<FirstPersonController>().enabled = false;
+            Cursor.visible = true;
+            PlayerController.GetComponent<FirstPersonController>().enabled = false;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
     public void PauseF()
     {
         pause.SetActive(false);
-        //Cursor.visible = false;
-        GetComponent<FirstPersonController>().enabled = true;
+        Cursor.visible = false;
+        PlayerController.GetComponent<FirstPersonController>().enabled = true;
+        Cursor.lockState = CursorLockMode.Locked;
     }
     public void ExitQt()
     {
