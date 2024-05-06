@@ -7,6 +7,7 @@ public class MenuManager : MonoBehaviour
 {
     public GameObject us;
     public GameObject exitQ;
+    public GameObject Menu;
 
     private void Start()
     {
@@ -16,10 +17,12 @@ public class MenuManager : MonoBehaviour
     public void UsT()
     {
         us.SetActive(true);
+        Menu.SetActive(false);
     }
     public void UsF()
     {
         us.SetActive(false);
+        Menu.SetActive(true);
     }
     public void ExitQuestion()
     {
