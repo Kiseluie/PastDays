@@ -11,8 +11,8 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        UsF();
-        ExitQuestionF();
+        us.SetActive(false);
+        exitQ.SetActive(false);
     }
     public void UsT()
     {
@@ -27,11 +27,12 @@ public class MenuManager : MonoBehaviour
     public void ExitQuestion()
     {
         exitQ.SetActive(true);
-
+        Menu.SetActive(false);
     }
     public void ExitQuestionF()
     {
         exitQ.SetActive(false);
+        Menu.SetActive(true);
     }
     public void Quit()
     {
