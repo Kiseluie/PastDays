@@ -44790,7 +44790,7 @@ MonoBehaviour:
   minTime: 15
   maxTime: 25
   spawnChance: 0.5
-  shadowDestroyDelay: 7
+  shadowDestroyDelay: 20
 --- !u!82 &1894798358
 AudioSource:
   m_ObjectHideFlags: 0
