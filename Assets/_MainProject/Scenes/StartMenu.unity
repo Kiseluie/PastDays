@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61b2292fd8824854fb9b001cec7075f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  us: {fileID: 913806141}
-  exitQ: {fileID: 576018789}
+  Credits: {fileID: 913806141}
+  exitQuestion: {fileID: 576018789}
   Menu: {fileID: 1335534548}
 --- !u!4 &13284881
 Transform:
@@ -3115,7 +3115,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 13284880}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: UsT
+        m_MethodName: CreditsTrue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3248,7 +3248,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 13284880}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: ExitQuestion
+        m_MethodName: ExitQuestionTrue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3711,7 +3711,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 13284880}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: ExitQuestionF
+        m_MethodName: ExitQuestionFalse
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3769,7 +3769,7 @@ GameObject:
   m_Component:
   - component: {fileID: 913806142}
   m_Layer: 5
-  m_Name: Us object
+  m_Name: CreditsObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7898,7 +7898,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 13284880}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: UsF
+        m_MethodName: CreditsFalse
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

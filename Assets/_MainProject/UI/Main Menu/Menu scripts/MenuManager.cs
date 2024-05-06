@@ -5,33 +5,33 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public GameObject us;
-    public GameObject exitQ;
+    public GameObject Credits;
+    public GameObject exitQuestion;
     public GameObject Menu;
 
     private void Start()
     {
-        us.SetActive(false);
-        exitQ.SetActive(false);
+        Credits.SetActive(false);
+        exitQuestion.SetActive(false);
     }
-    public void UsT()
+    public void CreditsTrue()
     {
-        us.SetActive(true);
+        Credits.SetActive(true);
         Menu.SetActive(false);
     }
-    public void UsF()
+    public void CreditsFalse()
     {
-        us.SetActive(false);
+        Credits.SetActive(false);
         Menu.SetActive(true);
     }
-    public void ExitQuestion()
+    public void ExitQuestionTrue()
     {
-        exitQ.SetActive(true);
+        exitQuestion.SetActive(true);
         Menu.SetActive(false);
     }
-    public void ExitQuestionF()
+    public void ExitQuestionFalse()
     {
-        exitQ.SetActive(false);
+        exitQuestion.SetActive(false);
         Menu.SetActive(true);
     }
     public void Quit()
