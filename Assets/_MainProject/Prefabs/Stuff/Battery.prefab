@@ -199,8 +199,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
+  m_Radius: 6
+  m_Height: 3.02
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &167872794303288048
@@ -215,4 +215,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f1a67aaf96c3404e9a58d5527813ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChargeAmount: 50
+  "\u0421ollectionText": {fileID: 0}
+  Near: 0
