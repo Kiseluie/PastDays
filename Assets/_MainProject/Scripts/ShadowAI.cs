@@ -9,11 +9,24 @@ public class ShadowAI : MonoBehaviour
 
     public NavMeshAgent Entity;
     public Transform player;
+
     public float catchingRange = 2f;
     public float chaseRange = 10;
     public float heightOffset = 1.0f;
-    public Transform mainCamera; 
+
+    public float tiltAngle = 30f;
+
+    public Transform mainCamera;
     public Transform ShadowMonster;
+
+    private GameObject spotpoint;
+
+
+    public float shakeDuration;
+    public float shakeMagnitude = 0.1f;
+
+    private Vector3 originalCameraPosition;
+
 
     private FirstPersonController firstPersonController;
     private Rigidbody rb;
@@ -23,11 +36,14 @@ public class ShadowAI : MonoBehaviour
 
     void Start()
     {
+        spotpoint = GameObject.FindGameObjectWithTag("spotpointtag");
         playerObject = GameObject.FindGameObjectWithTag("Player");
         firstPersonController = playerObject.GetComponent<FirstPersonController>();
         rb = playerObject.GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         mainCamera = Camera.main.transform;
+        shakeDuration = jumpscare.clip.length;
+
     }
 
     void Update()
@@ -37,10 +53,11 @@ public class ShadowAI : MonoBehaviour
         if (!_jumpScarePlayed && distanceToPlayer <= catchingRange)
         {
             firstPersonController.enabled = false;
-            rb.isKinematic = false;
             Entity.enabled = false;
             LookAtAndRaiseCamera();
+            Destroy(rb);
             StartCoroutine(PlayJumpScareAndReload());
+
         }
         else if (_jumpScarePlayed && distanceToPlayer > catchingRange)
         {
@@ -60,10 +77,17 @@ public class ShadowAI : MonoBehaviour
 
     void LookAtAndRaiseCamera()
     {
+        originalCameraPosition = mainCamera.position;
+
+        mainCamera.LookAt(spotpoint.transform.position);
+
         Vector3 cameraPosition = mainCamera.position;
-        mainCamera.LookAt(Entity.transform.position);
         cameraPosition.y += heightOffset;
         mainCamera.position = cameraPosition;
+
+        TiltCameraUpwards();
+
+        StartCoroutine(ShakeCamera());
     }
 
     private IEnumerator PlayJumpScareAndReload()
@@ -74,4 +98,26 @@ public class ShadowAI : MonoBehaviour
         yield return new WaitForSeconds(jumpscare.clip.length);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    IEnumerator ShakeCamera()
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < shakeDuration)
+        {
+            Vector3 randomPoint = originalCameraPosition + Random.insideUnitSphere * shakeMagnitude;
+            mainCamera.position = randomPoint;
+
+            elapsedTime += Time.deltaTime;
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        mainCamera.position = originalCameraPosition;
+    }
+
+    void TiltCameraUpwards()
+    {
+        mainCamera.Rotate(-tiltAngle, 0, 0, Space.Self);
+    }
 }
+
