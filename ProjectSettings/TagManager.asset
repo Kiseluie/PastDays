@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Battery
+  - jumpscareCamera
+  - abc
+  - newCamera
   layers:
   - Default
   - TransparentFX

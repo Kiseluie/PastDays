@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -10,31 +9,62 @@ public class ShadowAI : MonoBehaviour
 
     public NavMeshAgent Entity;
     public Transform player;
-    public float catсhingRange = 2f;
-    public float chaseRange = 10;
 
-    private bool _jumpScarePlayed = false; // Флаг для отслеживания проигрывания звука
+    public float catchingRange = 2f;
+    public float chaseRange = 10;
+    public float heightOffset = 1.0f;
+
+    public float tiltAngle = 30f;
+
+    public Transform mainCamera;
+    public Transform ShadowMonster;
+
+    private GameObject spotpoint;
+
+
+    public float shakeDuration;
+    public float shakeMagnitude = 0.1f;
+
+    private Vector3 originalCameraPosition;
+
+
+    private FirstPersonController firstPersonController;
+    private Rigidbody rb;
+    public GameObject playerObject;
+
+    private bool _jumpScarePlayed = false;
 
     void Start()
     {
+        spotpoint = GameObject.FindGameObjectWithTag("spotpointtag");
+        playerObject = GameObject.FindGameObjectWithTag("Player");
+        firstPersonController = playerObject.GetComponent<FirstPersonController>();
+        rb = playerObject.GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        mainCamera = Camera.main.transform;
+        shakeDuration = jumpscare.clip.length;
+
     }
 
     void Update()
     {
-        float destination = Vector3.Distance(Entity.transform.position, player.position);
+        float distanceToPlayer = Vector3.Distance(Entity.transform.position, player.position);
 
-        if (!_jumpScarePlayed && destination <= catсhingRange)
+        if (!_jumpScarePlayed && distanceToPlayer <= catchingRange)
         {
+            firstPersonController.enabled = false;
+            Entity.enabled = false;
+            LookAtAndRaiseCamera();
+            Destroy(rb);
             StartCoroutine(PlayJumpScareAndReload());
+
         }
-        else if (_jumpScarePlayed && destination > catсhingRange)
+        else if (_jumpScarePlayed && distanceToPlayer > catchingRange)
         {
-            // Позволяет монстру снова испугать игрока, если тот ушёл на безопасное расстояние
             _jumpScarePlayed = false;
         }
 
-        if (destination <= chaseRange)
+        if (distanceToPlayer <= chaseRange)
         {
             Entity.destination = player.position;
         }
@@ -45,11 +75,49 @@ public class ShadowAI : MonoBehaviour
         }
     }
 
+    void LookAtAndRaiseCamera()
+    {
+        originalCameraPosition = mainCamera.position;
+
+        mainCamera.LookAt(spotpoint.transform.position);
+
+        Vector3 cameraPosition = mainCamera.position;
+        cameraPosition.y += heightOffset;
+        mainCamera.position = cameraPosition;
+
+        TiltCameraUpwards();
+
+        StartCoroutine(ShakeCamera());
+    }
+
     private IEnumerator PlayJumpScareAndReload()
     {
-        _jumpScarePlayed = true; // Устанавливаем флаг, что звук проигрывается
+        _jumpScarePlayed = true;
         jumpscare.Play();
-        yield return new WaitForSeconds(jumpscare.clip.length); // Ожидаем окончания проигрывания звука
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Перезагружаем текущую сцену
+
+        yield return new WaitForSeconds(jumpscare.clip.length);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    IEnumerator ShakeCamera()
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < shakeDuration)
+        {
+            Vector3 randomPoint = originalCameraPosition + Random.insideUnitSphere * shakeMagnitude;
+            mainCamera.position = randomPoint;
+
+            elapsedTime += Time.deltaTime;
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        mainCamera.position = originalCameraPosition;
+    }
+
+    void TiltCameraUpwards()
+    {
+        mainCamera.Rotate(-tiltAngle, 0, 0, Space.Self);
     }
 }
+
