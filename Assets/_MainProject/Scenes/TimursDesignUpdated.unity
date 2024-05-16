@@ -3675,7 +3675,7 @@ PrefabInstance:
     - target: {fileID: 167872794303288048, guid: 9fd3d6effaedcb64ca5c6c6dbcac0607, type: 3}
       propertyPath: "\u0421ollectionText"
       value: 
-      objectReference: {fileID: 2064822197}
+      objectReference: {fileID: 0}
     - target: {fileID: 3186529013417514590, guid: 9fd3d6effaedcb64ca5c6c6dbcac0607, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.263163
@@ -5116,7 +5116,7 @@ PrefabInstance:
     - target: {fileID: 167872794303288048, guid: 9fd3d6effaedcb64ca5c6c6dbcac0607, type: 3}
       propertyPath: "\u0421ollectionText"
       value: 
-      objectReference: {fileID: 2064822197}
+      objectReference: {fileID: 0}
     - target: {fileID: 3186529013417514590, guid: 9fd3d6effaedcb64ca5c6c6dbcac0607, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.100000024
@@ -5822,7 +5822,7 @@ PrefabInstance:
     - target: {fileID: 167872794303288048, guid: 9fd3d6effaedcb64ca5c6c6dbcac0607, type: 3}
       propertyPath: "\u0421ollectionText"
       value: 
-      objectReference: {fileID: 2064822197}
+      objectReference: {fileID: 0}
     - target: {fileID: 3186529013417514590, guid: 9fd3d6effaedcb64ca5c6c6dbcac0607, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.100000046
@@ -41851,7 +41851,7 @@ PrefabInstance:
     - target: {fileID: 167872794303288048, guid: 9fd3d6effaedcb64ca5c6c6dbcac0607, type: 3}
       propertyPath: "\u0421ollectionText"
       value: 
-      objectReference: {fileID: 2064822197}
+      objectReference: {fileID: 0}
     - target: {fileID: 3186529013417514590, guid: 9fd3d6effaedcb64ca5c6c6dbcac0607, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.100000046
@@ -44778,7 +44778,7 @@ MonoBehaviour:
   maxBatteryCount: 4
   ChargeAmount: 50
   distance: 3
-  battery: {fileID: 0}
+  CollectText: {fileID: 9213812768286005547}
 --- !u!114 &1894798357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45244,7 +45244,7 @@ PrefabInstance:
     - target: {fileID: 167872794303288048, guid: 9fd3d6effaedcb64ca5c6c6dbcac0607, type: 3}
       propertyPath: "\u0421ollectionText"
       value: 
-      objectReference: {fileID: 2064822197}
+      objectReference: {fileID: 0}
     - target: {fileID: 3186529013417514590, guid: 9fd3d6effaedcb64ca5c6c6dbcac0607, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.100000024
@@ -45306,11 +45306,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3186529013417514590, guid: 9fd3d6effaedcb64ca5c6c6dbcac0607, type: 3}
   m_PrefabInstance: {fileID: 2030644924}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2064822197 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9213812767231349151, guid: b83f8acfd37e0d54eb6436919c2d252a, type: 3}
-  m_PrefabInstance: {fileID: 1097713844}
   m_PrefabAsset: {fileID: 0}
 --- !u!43 &2099983106
 Mesh:
@@ -45492,7 +45487,7 @@ PrefabInstance:
     - target: {fileID: 167872794303288048, guid: 9fd3d6effaedcb64ca5c6c6dbcac0607, type: 3}
       propertyPath: "\u0421ollectionText"
       value: 
-      objectReference: {fileID: 2064822197}
+      objectReference: {fileID: 0}
     - target: {fileID: 3101395051821488342, guid: 9fd3d6effaedcb64ca5c6c6dbcac0607, type: 3}
       propertyPath: m_Radius
       value: 6
@@ -48645,6 +48640,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11b6207e2241c0348b6b82a88e8e551a, type: 3}
+--- !u!1 &9213812768286005547 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9213812767231349151, guid: b83f8acfd37e0d54eb6436919c2d252a, type: 3}
+  m_PrefabInstance: {fileID: 1097713844}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

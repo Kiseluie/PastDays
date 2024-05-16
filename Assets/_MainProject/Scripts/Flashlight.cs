@@ -22,8 +22,8 @@ public class Flashlight : MonoBehaviour
     private float outputNumber;
     private GameObject maxUI;
     private GameObject flashlightObject;
-    public float distance = 3;
-    public GameObject battery;
+    public float distance = 5;
+    public GameObject CollectText;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +32,7 @@ public class Flashlight : MonoBehaviour
         DrawBatteryBar();
         maxUI = GameObject.Find("batteryMax");
         flashlightObject = GameObject.Find("Flashlight");
+        CollectText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -46,17 +47,23 @@ public class Flashlight : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, distance))//подбор батарейки 
         {
-            if (hit.collider.tag == ("Battery"))
+            if (hit.collider.tag == ("Battery"))//какой тег
+            {
+                CollectText.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.E) && batteryCount < maxBatteryCount)
                 {
-                   Destroy(hit.collider.gameObject);
+                    Destroy(hit.collider.gameObject);
                     batteryCount++;
                     DrawBatteryBar();
                 }
+            }
         }
-       
+        else
+        {
+            CollectText.SetActive(false);
+        }
     }
 
     private void AddCharge(float amount)
