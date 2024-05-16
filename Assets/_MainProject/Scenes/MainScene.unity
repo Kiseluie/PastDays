@@ -13188,6 +13188,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &868749982 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9213812767231349151, guid: b83f8acfd37e0d54eb6436919c2d252a, type: 3}
+  m_PrefabInstance: {fileID: 1097713844}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &870551654
 Mesh:
   m_ObjectHideFlags: 0
@@ -54149,6 +54154,8 @@ MonoBehaviour:
   batteryCount: 0
   maxBatteryCount: 4
   ChargeAmount: 50
+  distance: 5
+  CollectText: {fileID: 868749982}
 --- !u!114 &1894798357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54156,7 +54163,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1894798349}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6854368c5ab527840b61482f4d1f9f9f, type: 3}
   m_Name: 
@@ -54177,7 +54184,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   minTime: 15
   maxTime: 25
-  spawnChance: 0.5
+  spawnChance: 1
   shadowDestroyDelay: 20
 --- !u!82 &1894798358
 AudioSource:
