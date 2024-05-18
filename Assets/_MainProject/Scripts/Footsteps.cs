@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Footsteps : MonoBehaviour
 {
-    [SerializeField] LayerMask groundLayer; // Select ground layer.
+    [SerializeField] LayerMask groundLayer;
 
     [SerializeField] List<AudioClip> TerrainSounds;
     [SerializeField] List<AudioClip> buildingSounds;

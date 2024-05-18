@@ -62,6 +62,7 @@ MonoBehaviour:
   shakeDuration: 0
   shakeMagnitude: 0.1
   playerObject: {fileID: 0}
+  _jumpScarePlayed: 0
 --- !u!195 &4968811757084931159
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -214,7 +215,7 @@ GameObject:
   - component: {fileID: 8232832800814166447}
   m_Layer: 0
   m_Name: AudioSourceObject
-  m_TagString: Untagged
+  m_TagString: audioObjectTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -256,7 +257,7 @@ AudioSource:
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
-  Pan2D: 0
+  Pan2D: 1
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0

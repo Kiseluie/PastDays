@@ -3,42 +3,38 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
-public class ShadowAI : MonoBehaviour
+public class PuppetAI : MonoBehaviour
 {
     public AudioSource jumpscare;
 
-    public NavMeshAgent Entity;
+    public NavMeshAgent puppetEntity;
     public Transform player;
-
     public float catchingRange = 2f;
     public float chaseRange = 10;
     public float heightOffset = 1.0f;
-
     public float tiltAngle = 30f;
-
     public Transform mainCamera;
-    public Transform ShadowMonster;
-
-    private GameObject spotpoint;
-
-
+    public Transform PuppetMonster;
     public float shakeDuration;
     public float shakeMagnitude = 0.1f;
+    public GameObject playerObject;
+    public bool _jumpScarePlayed = false;
 
+    private GameObject spotpoint;
     private Vector3 originalCameraPosition;
-
-
     private FirstPersonController firstPersonController;
     private Rigidbody rb;
     private ChanceShadowAttack chanceAttackScript;
-    public GameObject playerObject;
+    private GameObject stepsAudioSource;
+    
 
-    public bool _jumpScarePlayed = false;
+    
 
     void Start()
     {
-        spotpoint = GameObject.FindGameObjectWithTag("spotpointtag");
+        spotpoint = GameObject.FindGameObjectWithTag("spotpointtagPuppet");
         playerObject = GameObject.FindGameObjectWithTag("Player");
+        stepsAudioSource = GameObject.FindGameObjectWithTag("audioObjectTag");
         firstPersonController = playerObject.GetComponent<FirstPersonController>();
         rb = playerObject.GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -49,13 +45,14 @@ public class ShadowAI : MonoBehaviour
 
     void Update()
     {
-        float distanceToPlayer = Vector3.Distance(Entity.transform.position, player.position);
+        float distanceToPlayer = Vector3.Distance(puppetEntity.transform.position, player.position);
 
         if (!_jumpScarePlayed && distanceToPlayer <= catchingRange)
         {
             firstPersonController.enabled = false;
-            Entity.enabled = false;
+            puppetEntity.enabled = false;
             LookAtAndRaiseCamera();
+            Destroy(stepsAudioSource);
             Destroy(rb);
             StartCoroutine(PlayJumpScareAndReload());
 
@@ -67,7 +64,7 @@ public class ShadowAI : MonoBehaviour
 
         if (distanceToPlayer <= chaseRange)
         {
-            Entity.destination = player.position;
+            puppetEntity.destination = player.position;
         }
 
         if (player.position.y < -3)
