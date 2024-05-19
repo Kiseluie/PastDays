@@ -6,7 +6,7 @@ using TMPro;
 public class DoorKey : MonoBehaviour
 {
     public TextMeshProUGUI CollectKeyText;
-    public GameObject CollectBackground;
+    //public GameObject CollectBackground;
     public GameObject CollectText;
     public int KeyCounter;
     public int _maxKeyCounter;
@@ -14,7 +14,7 @@ public class DoorKey : MonoBehaviour
     private void Start()
     {
         CollectText.SetActive(false);
-        CollectBackground.SetActive(false);
+        //CollectBackground.SetActive(false);
     }
     private void Update()
     {
@@ -32,7 +32,7 @@ public class DoorKey : MonoBehaviour
         {
             if (hit.collider.tag == ("Key"))//какой тег
             {
-                CollectBackground.SetActive(true);
+                //CollectBackground.SetActive(true);
                 CollectText.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.E))
                 {
