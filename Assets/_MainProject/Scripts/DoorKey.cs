@@ -49,6 +49,6 @@ public class DoorKey : MonoBehaviour
     }
     private void WriteCollectText()
     {
-        CollectKeyText.text = KeyCounter.ToString();
+        CollectKeyText.text = KeyCounter.ToString()+"/2";
     }
 }
