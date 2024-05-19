@@ -10,15 +10,19 @@ public class StressManager : MonoBehaviour
     public float speedDecreaseSpeed = 2f;
 
     public AudioSource heartbeating;
+    public AudioSource apperianceSound;
+
     public float minHeartbeatPitch = 1f;
-    public float maxHeartbeatPitch = 1.5f; // Устанавливает предел, насколько высоким может быть pitch
+    public float maxHeartbeatPitch = 1.5f;
     public GameObject monsterPrefab;
     public Transform spawnPoint;
+
+
     private bool monsterSpawned = false;
 
     private void Start()
     {
-        heartbeating.pitch = minHeartbeatPitch; // Инициализация pitch
+        heartbeating.pitch = minHeartbeatPitch;
     }
 
     void Update()
@@ -66,7 +70,6 @@ public class StressManager : MonoBehaviour
                 heartbeating.Play();
             }
 
-            // Устанавливаем pitch на основе уровня стресса
             heartbeating.pitch = Mathf.Lerp(minHeartbeatPitch, maxHeartbeatPitch, (stressLevel - 10) / (maxStress - 10));
         }
         else
@@ -75,13 +78,19 @@ public class StressManager : MonoBehaviour
             {
                 heartbeating.Stop();
             }
-            // Сброс pitch к стандартному значению при снижении стресса ниже 10
             heartbeating.pitch = minHeartbeatPitch;
         }
     }
 
     void SpawnMonster()
     {
-        Instantiate(monsterPrefab, spawnPoint.position, Quaternion.identity);
+        StartCoroutine(AppearanceSoundCoroutine());
+    }
+
+    private IEnumerator AppearanceSoundCoroutine()
+    {
+        apperianceSound.Play();
+        yield return new WaitForSeconds(3);
+        Instantiate(monsterPrefab, spawnPoint.position, spawnPoint.rotation);
     }
 }
