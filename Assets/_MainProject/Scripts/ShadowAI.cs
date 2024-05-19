@@ -32,8 +32,11 @@ public class ShadowAI : MonoBehaviour
     private Rigidbody rb;
     private ChanceShadowAttack chanceAttackScript;
     public GameObject playerObject;
+    private GameObject puppetMonster;
 
     public bool _jumpScarePlayed = false;
+
+    private bool _isRbDestroyed = false;
 
     void Start()
     {
@@ -56,7 +59,13 @@ public class ShadowAI : MonoBehaviour
             firstPersonController.enabled = false;
             Entity.enabled = false;
             LookAtAndRaiseCamera();
-            Destroy(rb);
+            if (!_isRbDestroyed)
+            {
+                rb.isKinematic = true;
+                rb.velocity = Vector3.zero;
+                _isRbDestroyed = !_isRbDestroyed;
+            }
+
             StartCoroutine(PlayJumpScareAndReload());
 
         }
@@ -65,7 +74,7 @@ public class ShadowAI : MonoBehaviour
             _jumpScarePlayed = false;
         }
 
-        if (distanceToPlayer <= chaseRange)
+        if (!_jumpScarePlayed && distanceToPlayer <= chaseRange)
         {
             Entity.destination = player.position;
         }
@@ -93,6 +102,7 @@ public class ShadowAI : MonoBehaviour
 
     private IEnumerator PlayJumpScareAndReload()
     {
+        Destroy(puppetMonster);
         _jumpScarePlayed = true;
         jumpscare.Play();
 

@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.PostProcessing;
 
 public class StressManager : MonoBehaviour
 {
@@ -18,11 +20,26 @@ public class StressManager : MonoBehaviour
     public Transform spawnPoint;
 
 
+    public Vignette vignette;
+    public GameObject cameraObject;
     private bool monsterSpawned = false;
+    private PostProcessVolume postProcessVolume;
+    public LensDistortion lensDistortion;
+
 
     private void Start()
     {
         heartbeating.pitch = minHeartbeatPitch;
+        postProcessVolume = cameraObject.GetComponent<PostProcessVolume>();
+
+        if (postProcessVolume.profile.TryGetSettings(out Vignette vignetteSettings))
+        {
+            vignette = vignetteSettings;
+        }
+        if (postProcessVolume.profile.TryGetSettings(out LensDistortion lensDistortionSettings))
+        {
+            lensDistortion = lensDistortionSettings;
+        }
     }
 
     void Update()
@@ -48,6 +65,8 @@ public class StressManager : MonoBehaviour
         }
 
         UpdateHeartbeat();
+        UpdateVignette();
+        UpdateLensDistortion();
     }
 
     void IncreaseStress()
@@ -79,6 +98,23 @@ public class StressManager : MonoBehaviour
                 heartbeating.Stop();
             }
             heartbeating.pitch = minHeartbeatPitch;
+        }
+    }
+    void UpdateVignette()
+    {
+        if (vignette != null)
+        {
+            float vignetteIntensity = Mathf.Lerp(0.2f, 0.6f, stressLevel / maxStress);
+            vignette.intensity.value = vignetteIntensity;
+        }
+    }
+
+    void UpdateLensDistortion()
+    {
+        if (lensDistortion != null)
+        {
+            float distortionIntensity = Mathf.Lerp(20f, -60f, stressLevel / maxStress);
+            lensDistortion.intensity.value = distortionIntensity;
         }
     }
 

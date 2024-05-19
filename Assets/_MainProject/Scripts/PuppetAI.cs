@@ -26,9 +26,12 @@ public class PuppetAI : MonoBehaviour
     private Rigidbody rb;
     private ChanceShadowAttack chanceAttackScript;
     private GameObject stepsAudioSource;
-    
+    private GameObject shadowMonster;
 
-    
+    private bool _isRbDestroyed = false;
+
+
+
 
     void Start()
     {
@@ -40,6 +43,7 @@ public class PuppetAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         mainCamera = Camera.main.transform;
         shakeDuration = jumpscare.clip.length;
+
 
     }
 
@@ -53,7 +57,12 @@ public class PuppetAI : MonoBehaviour
             puppetEntity.enabled = false;
             LookAtAndRaiseCamera();
             Destroy(stepsAudioSource);
-            Destroy(rb);
+            if (!_isRbDestroyed)
+            {
+                rb.isKinematic = true;
+                rb.velocity = Vector3.zero;
+                _isRbDestroyed = !_isRbDestroyed;
+            }
             StartCoroutine(PlayJumpScareAndReload());
 
         }
@@ -62,7 +71,7 @@ public class PuppetAI : MonoBehaviour
             _jumpScarePlayed = false;
         }
 
-        if (distanceToPlayer <= chaseRange)
+        if (distanceToPlayer <= chaseRange && !_jumpScarePlayed)
         {
             puppetEntity.destination = player.position;
         }
@@ -90,6 +99,7 @@ public class PuppetAI : MonoBehaviour
 
     private IEnumerator PlayJumpScareAndReload()
     {
+        Destroy(shadowMonster);
         _jumpScarePlayed = true;
         jumpscare.Play();
 
