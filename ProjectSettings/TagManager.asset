@@ -8,6 +8,8 @@ TagManager:
   - jumpscareCamera
   - abc
   - newCamera
+  - spotpointtag
+  - Key
   layers:
   - Default
   - TransparentFX
