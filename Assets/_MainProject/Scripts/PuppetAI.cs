@@ -3,69 +3,66 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
-public class ShadowAI : MonoBehaviour
+public class PuppetAI : MonoBehaviour
 {
     public AudioSource jumpscare;
 
-    public NavMeshAgent Entity;
+    public NavMeshAgent puppetEntity;
     public Transform player;
-
     public float catchingRange = 2f;
     public float chaseRange = 10;
     public float heightOffset = 1.0f;
-
     public float tiltAngle = 30f;
-
     public Transform mainCamera;
-    public Transform ShadowMonster;
-
-    private GameObject spotpoint;
-
-
+    public Transform PuppetMonster;
     public float shakeDuration;
     public float shakeMagnitude = 0.1f;
+    public GameObject playerObject;
+    public bool _jumpScarePlayed = false;
 
+    private GameObject spotpoint;
     private Vector3 originalCameraPosition;
-
-
     private FirstPersonController firstPersonController;
     private Rigidbody rb;
     private ChanceShadowAttack chanceAttackScript;
-    public GameObject playerObject;
-    private GameObject puppetMonster;
-
-    public bool _jumpScarePlayed = false;
+    private GameObject stepsAudioSource;
+    private GameObject shadowMonster;
 
     private bool _isRbDestroyed = false;
 
+
+
+
     void Start()
     {
-        spotpoint = GameObject.FindGameObjectWithTag("spotpointtag");
+        spotpoint = GameObject.FindGameObjectWithTag("spotpointtagPuppet");
         playerObject = GameObject.FindGameObjectWithTag("Player");
+        stepsAudioSource = GameObject.FindGameObjectWithTag("audioObjectTag");
         firstPersonController = playerObject.GetComponent<FirstPersonController>();
         rb = playerObject.GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         mainCamera = Camera.main.transform;
         shakeDuration = jumpscare.clip.length;
 
+
     }
 
     void Update()
     {
-        float distanceToPlayer = Vector3.Distance(Entity.transform.position, player.position);
+        float distanceToPlayer = Vector3.Distance(puppetEntity.transform.position, player.position);
 
         if (!_jumpScarePlayed && distanceToPlayer <= catchingRange)
         {
             firstPersonController.enabled = false;
-            Entity.enabled = false;
+            puppetEntity.enabled = false;
             LookAtAndRaiseCamera();
+            Destroy(stepsAudioSource);
             if (!_isRbDestroyed)
             {
                 rb.isKinematic = true;
                 rb.velocity = Vector3.zero;
                 _isRbDestroyed = !_isRbDestroyed;
             }
-
             StartCoroutine(PlayJumpScareAndReload());
 
         }
@@ -74,9 +71,9 @@ public class ShadowAI : MonoBehaviour
             _jumpScarePlayed = false;
         }
 
-        if (!_jumpScarePlayed && distanceToPlayer <= chaseRange)
+        if (distanceToPlayer <= chaseRange && !_jumpScarePlayed)
         {
-            Entity.destination = player.position;
+            puppetEntity.destination = player.position;
         }
 
         if (player.position.y < -3)
@@ -102,7 +99,7 @@ public class ShadowAI : MonoBehaviour
 
     private IEnumerator PlayJumpScareAndReload()
     {
-        Destroy(puppetMonster);
+        Destroy(shadowMonster);
         _jumpScarePlayed = true;
         jumpscare.Play();
 

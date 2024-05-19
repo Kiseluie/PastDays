@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class ShadowSteps : MonoBehaviour
 {
-    public AudioSource footstepSoundSource; // Аудио источник, добавленный к монстру
-    public AudioClip[] footstepSounds; // Массив ваших звуков шагов
+    public AudioSource footstepSoundSource;
+    public AudioClip[] footstepSounds;
 
-    public float footstepInterval = 1.0f; // Интервал между шагами в секундах
+    public float footstepInterval = 1.0f;
 
     private void OnEnable()
     {
-        // Запуск корутины по проигрыванию звука шагов
         StartCoroutine(PlayFootstepSounds());
     }
 
     private IEnumerator PlayFootstepSounds()
     {
-        while (true) // Бесконечный цикл
+        while (true)
         {
-            yield return new WaitForSeconds(footstepInterval); // Ожидание одной секунды
-            if (this.gameObject.activeSelf) // Проверка, что объект монстра активен
+            yield return new WaitForSeconds(footstepInterval);
+            if (this.gameObject.activeSelf)
             {
                 PlayRandomFootstepSound();
             }
@@ -29,7 +28,6 @@ public class ShadowSteps : MonoBehaviour
 
     private void PlayRandomFootstepSound()
     {
-        // Выбираем случайный AudioClip из массива и воспроизводим его
         if (footstepSounds.Length > 0)
         {
             AudioClip clip = footstepSounds[Random.Range(0, footstepSounds.Length)];
@@ -39,7 +37,6 @@ public class ShadowSteps : MonoBehaviour
 
     private void OnDisable()
     {
-        // Остановка корутины, если монстр удаляется со сцены
         StopAllCoroutines();
     }
 }

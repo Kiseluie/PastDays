@@ -8,6 +8,11 @@ TagManager:
   - jumpscareCamera
   - abc
   - newCamera
+  - spotpointtag
+  - audioObjectTag
+  - spotpointtagPuppet
+  - monsterShadow
+  - monsterPuppet
   layers:
   - Default
   - TransparentFX

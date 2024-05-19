@@ -9,17 +9,18 @@ public class ChanceShadowAttack : MonoBehaviour
     public GameObject shadowPrefab;
     public Transform spawnPoint;
     public List<Transform> spawnPoints;
+    public ShadowAI shadowAI;
 
     public float spawnDistance = 25f;
     public LayerMask spawnLayerMask;
     public float minTime = 180f;
     public float maxTime = 360f;
     public float spawnChance = 0.5f;
-    public float shadowDestroyDelay = 7f;
+    public float shadowDestroyDelay = 20f;
 
     private void Start()
     {
-
+        shadowAI = GetComponent<ShadowAI>();
         StartCoroutine(SoundAndSpawnRoutine());
     }
 
@@ -45,6 +46,7 @@ public class ChanceShadowAttack : MonoBehaviour
     private IEnumerator DestroyShadowAfterTime(GameObject shadow, float delay)
     {
         yield return new WaitForSeconds(delay);
+        if (!shadowAI._jumpScarePlayed)
         Destroy(shadow);
     }
 
