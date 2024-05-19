@@ -13,6 +13,7 @@ TagManager:
   - spotpointtagPuppet
   - monsterShadow
   - monsterPuppet
+  - Key
   layers:
   - Default
   - TransparentFX

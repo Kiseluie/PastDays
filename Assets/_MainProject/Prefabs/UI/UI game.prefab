@@ -2535,11 +2535,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3198152327195947826, guid: e3d6f5c667b27134dbd4250e95f1d9d0, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -582.4771
+      value: -1357.7721
       objectReference: {fileID: 0}
     - target: {fileID: 3198152327195947826, guid: e3d6f5c667b27134dbd4250e95f1d9d0, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -281.78
+      value: -756.1064
       objectReference: {fileID: 0}
     - target: {fileID: 3198152327195947826, guid: e3d6f5c667b27134dbd4250e95f1d9d0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2571,11 +2571,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3198152327195947826, guid: e3d6f5c667b27134dbd4250e95f1d9d0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3198152327195947826, guid: e3d6f5c667b27134dbd4250e95f1d9d0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 29
+      value: 43
       objectReference: {fileID: 0}
     - target: {fileID: 3198152327195947826, guid: e3d6f5c667b27134dbd4250e95f1d9d0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2595,12 +2595,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4983858675968231173, guid: e3d6f5c667b27134dbd4250e95f1d9d0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6425377902841114280, guid: e3d6f5c667b27134dbd4250e95f1d9d0, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: 0ea83db145e2150469cb5e35e35b4a5c, type: 2}
+    - target: {fileID: 6425377902841114280, guid: e3d6f5c667b27134dbd4250e95f1d9d0, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6794108863039466178, guid: 0ea83db145e2150469cb5e35e35b4a5c, type: 2}
     - target: {fileID: 6425377902841114280, guid: e3d6f5c667b27134dbd4250e95f1d9d0, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 1
