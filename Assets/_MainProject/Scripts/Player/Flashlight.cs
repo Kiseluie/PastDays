@@ -8,6 +8,7 @@ public class Flashlight : MonoBehaviour
     //public RectTransform valueRectTransform;
     public TextMeshProUGUI batteryPercentage;
     public TextMeshProUGUI batteryCountUI;
+    public float maxValue = 100;
     public float value = 100;
     public float DischargeSpeed = 1f;
     public int batteryCount = 0;
@@ -18,7 +19,6 @@ public class Flashlight : MonoBehaviour
     private float timer = 0;
 
     private bool FlashlightIsOn = true;
-    private float _maxValue;
     private float outputNumber;
     private GameObject maxUI;
     private GameObject flashlightObject;
@@ -27,8 +27,6 @@ public class Flashlight : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        _maxValue = value;
         DrawBatteryBar();
         maxUI = GameObject.Find("batteryMax");
         flashlightObject = GameObject.Find("Flashlight");
@@ -71,7 +69,7 @@ public class Flashlight : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && batteryCount > 0)
         {
             value += amount;
-            value = Mathf.Clamp(value, 0, _maxValue);
+            value = Mathf.Clamp(value, 0, maxValue);
             DrawBatteryBar();
             FlashlightIsOn = true;
             flashlightObject.SetActive(FlashlightIsOn);
