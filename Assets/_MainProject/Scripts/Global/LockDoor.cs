@@ -6,7 +6,7 @@ public class LockDoor : MonoBehaviour
 {
     private GameObject player;
     private Component[] meshes;
-    public int Need = 1;
+    public int Need = 3;
     public int Key = 0;
 
     public bool isOpening;

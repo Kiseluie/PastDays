@@ -1,3 +1,4 @@
+using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class RayScript : MonoBehaviour
     public GameObject player;
     private Camera camera;
     public GameObject Door;
+    public TextMeshProUGUI KeyText;
+
     private void Start()
     {
         CollectText.SetActive(false);
@@ -36,6 +39,7 @@ public class RayScript : MonoBehaviour
                     Destroy(hit.collider.gameObject);
                     CollectText.SetActive(false);
                     _lock.Key++;
+                    KeyText.text = "Keys:" +_lock.Key.ToString() + "/" + _lock.Need.ToString();
                 }
             }
             if (hit.collider.tag == ("Battery"))//подбор батарейки
