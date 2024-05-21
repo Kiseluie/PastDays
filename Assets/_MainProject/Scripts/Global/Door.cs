@@ -15,7 +15,6 @@ public class Door : MonoBehaviour
         meshes = gameObject.GetComponentsInChildren<MeshCollider>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Vector3.Distance(player.transform.position, transform.position) <= 3) 
