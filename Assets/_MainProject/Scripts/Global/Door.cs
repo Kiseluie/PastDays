@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    [SerializeField] private AudioClip[] audioClips;
     private GameObject player;
     private Component[] meshes;
+    private AudioSource AudioSource;
 
     public bool isOpening;
 
@@ -13,6 +15,7 @@ public class Door : MonoBehaviour
     {
         player = GameObject.Find("FirstPersonController");
         meshes = gameObject.GetComponentsInChildren<MeshCollider>();
+        AudioSource = GetComponentInChildren<AudioSource>();
     }
 
     void Update()
@@ -21,6 +24,7 @@ public class Door : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E) && isOpening == false)
             {
+                AudioSource.PlayOneShot(audioClips[0]);
                 StartCoroutine(OpenDoor());
             }
         }
