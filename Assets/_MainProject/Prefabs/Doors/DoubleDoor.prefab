@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 3102758920250386076}
   - component: {fileID: 334358345581183533}
   - component: {fileID: 3370095686423650494}
+  - component: {fileID: 41863414978749955}
   m_Layer: 0
   m_Name: DoubleDoor
   m_TagString: Untagged
@@ -177,6 +178,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &41863414978749955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2325236608082820134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: add07f864a257c4459841ef29caa02f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destructionDistance: 3
+  doorIsImposter: 0
+  delay: 60
+  breathing: {fileID: 0}
+  monsterCerberusPrefab: {fileID: 0}
+  DoorComponent: {fileID: 0}
+  doorIsOpened: 0
 --- !u!1 &3783030840541966776
 GameObject:
   m_ObjectHideFlags: 0

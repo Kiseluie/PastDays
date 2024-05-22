@@ -66,4 +66,5 @@ public class DoorInfected : MonoBehaviour
             monsterSpawned = false;
         }
     }
+
 }
