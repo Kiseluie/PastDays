@@ -7,7 +7,7 @@ public class UImanagerScript : MonoBehaviour
 {
     public GameObject pause;
     public GameObject exitQ;
-
+    public GameObject Dark;
     private GameObject PlayerController;
     void Start()
     {
@@ -20,6 +20,7 @@ public class UImanagerScript : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        DarkFalse();
     }
 
     void FixedUpdate()
@@ -31,7 +32,14 @@ public class UImanagerScript : MonoBehaviour
             PauseGame();
         }
     }
-
+    public void DarkTrue()
+    {
+        Dark.SetActive(true);
+    }
+    public void DarkFalse()
+    {
+        Dark.SetActive(false);
+    }
     public void PauseGame()
     {
         Time.timeScale = 0;
@@ -52,6 +60,7 @@ public class UImanagerScript : MonoBehaviour
         pause.SetActive(false);
         PlayerController.GetComponent<FirstPersonController>().enabled = true;
         UnPauseGame();
+        DarkFalse();
     }
     public void ExitQt()
     {
@@ -75,6 +84,7 @@ public class UImanagerScript : MonoBehaviour
     }
     public void PauseT()
     {
+        DarkTrue();
         pause.SetActive(true);
     }
 }

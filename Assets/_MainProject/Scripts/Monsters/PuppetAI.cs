@@ -7,6 +7,8 @@ public class PuppetAI : MonoBehaviour
 {
     public AudioSource jumpscare;
 
+   
+
     public NavMeshAgent puppetEntity;
     public Transform player;
     public float catchingRange = 2f;
@@ -30,11 +32,12 @@ public class PuppetAI : MonoBehaviour
 
     private bool _isRbDestroyed = false;
 
-
+    public GameObject uiManager;
 
 
     void Start()
     {
+        uiManager = GameObject.Find("UImanagerScript");
         spotpoint = GameObject.FindGameObjectWithTag("spotpointtagPuppet");
         playerObject = GameObject.FindGameObjectWithTag("Player");
         stepsAudioSource = GameObject.FindGameObjectWithTag("audioObjectTag");
@@ -43,8 +46,6 @@ public class PuppetAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         mainCamera = Camera.main.transform;
         shakeDuration = jumpscare.clip.length;
-
-
     }
 
     void Update()
@@ -53,6 +54,7 @@ public class PuppetAI : MonoBehaviour
 
         if (!_jumpScarePlayed && distanceToPlayer <= catchingRange)
         {
+            
             firstPersonController.enabled = false;
             puppetEntity.enabled = false;
             LookAtAndRaiseCamera();
@@ -64,7 +66,7 @@ public class PuppetAI : MonoBehaviour
                 _isRbDestroyed = !_isRbDestroyed;
             }
             StartCoroutine(PlayJumpScareAndReload());
-
+            
         }
         else if (_jumpScarePlayed && distanceToPlayer > catchingRange)
         {
@@ -84,6 +86,7 @@ public class PuppetAI : MonoBehaviour
 
     void LookAtAndRaiseCamera()
     {
+        
         originalCameraPosition = mainCamera.position;
 
         mainCamera.LookAt(spotpoint.transform.position);
@@ -102,12 +105,14 @@ public class PuppetAI : MonoBehaviour
         Destroy(shadowMonster);
         _jumpScarePlayed = true;
         jumpscare.Play();
+        
 
         yield return new WaitForSeconds(jumpscare.clip.length);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     IEnumerator ShakeCamera()
     {
+        
         float elapsedTime = 0f;
 
         while (elapsedTime < shakeDuration)
