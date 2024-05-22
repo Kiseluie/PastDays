@@ -8,7 +8,7 @@ public class Door : MonoBehaviour
     [SerializeField] private AudioClip[] audioClips;
     private GameObject player;
     private Component[] meshes;
-    private AudioSource AudioSource;
+    [SerializeField] private AudioSource AudioSource;
 
     public bool isOpening;
 
@@ -16,7 +16,6 @@ public class Door : MonoBehaviour
     {
         player = GameObject.Find("FirstPersonController");
         meshes = gameObject.GetComponentsInChildren<MeshCollider>();
-        AudioSource = GetComponentInChildren<AudioSource>();
     }
 
     void Update()

@@ -332,6 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClips:
   - {fileID: 8300000, guid: de32359e74e64ec45a4266b3e35950f2, type: 3}
+  AudioSource: {fileID: 7567620260260511713}
   isOpening: 0
 --- !u!114 &-3879565406808396610
 MonoBehaviour:
@@ -347,7 +348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destructionDistance: 3
   doorIsImposter: 0
-  delay: 60
+  delay: 5
   breathing: {fileID: 2472426220601195713}
   monsterCerberusPrefab: {fileID: 2684777362269796590, guid: 8d23590408a6d77448506fd459584549, type: 3}
   DoorComponent: {fileID: 501758808074900725}
