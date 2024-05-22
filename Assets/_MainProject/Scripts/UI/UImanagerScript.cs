@@ -9,7 +9,6 @@ public class UImanagerScript : MonoBehaviour
     public GameObject exitQ;
     public GameObject Dark;
     private GameObject PlayerController;
-    public GameObject BlackBackground;
     void Start()
     {
         UnPauseGame();
@@ -22,7 +21,6 @@ public class UImanagerScript : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         DarkFalse();
-        BlackBackground.SetActive(false);
     }
 
     void FixedUpdate()
@@ -88,9 +86,5 @@ public class UImanagerScript : MonoBehaviour
     {
         DarkTrue();
         pause.SetActive(true);
-    }
-    public void BlackBackgroundVoid()
-    {
-        BlackBackground.SetActive(true);
     }
 }

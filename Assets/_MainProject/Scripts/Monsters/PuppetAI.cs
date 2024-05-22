@@ -54,6 +54,7 @@ public class PuppetAI : MonoBehaviour
 
         if (!_jumpScarePlayed && distanceToPlayer <= catchingRange)
         {
+            
             firstPersonController.enabled = false;
             puppetEntity.enabled = false;
             LookAtAndRaiseCamera();
@@ -65,7 +66,7 @@ public class PuppetAI : MonoBehaviour
                 _isRbDestroyed = !_isRbDestroyed;
             }
             StartCoroutine(PlayJumpScareAndReload());
-
+            
         }
         else if (_jumpScarePlayed && distanceToPlayer > catchingRange)
         {
@@ -74,9 +75,7 @@ public class PuppetAI : MonoBehaviour
 
         if (distanceToPlayer <= chaseRange && !_jumpScarePlayed)
         {
-            Invoke("Black", 2f);
             puppetEntity.destination = player.position;
-            
         }
 
         if (player.position.y < -3)
@@ -132,11 +131,6 @@ public class PuppetAI : MonoBehaviour
     void TiltCameraUpwards()
     {
         mainCamera.Rotate(-tiltAngle, 0, 0, Space.Self);
-    }
-    private void Black()
-    {
-        var ui = uiManager.GetComponent<UImanagerScript>();
-        ui.BlackBackgroundVoid();
     }
 }
 

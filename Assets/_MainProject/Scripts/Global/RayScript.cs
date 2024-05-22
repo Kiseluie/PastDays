@@ -43,14 +43,14 @@ public class RayScript : MonoBehaviour
                         Destroy(hit.collider.gameObject);
                         CollectText.SetActive(false);
                         _lock.Key++;
-                        KeyText.text = "Keys:" + _lock.Key.ToString() + "/" + _lock.Need.ToString();
+                        KeyText.text = "Keys: " + _lock.Key.ToString() + "/" + _lock.Need.ToString();
                     }
                     else
                     {
                         Destroy(hit.collider.gameObject);
                         CollectText.SetActive(false);
                         _lockFirst.Key++;
-                        KeyText.text = "Keys:" + _lockFirst.Key.ToString() + "/" + _lockFirst.Need.ToString();
+                        KeyText.text = "Keys: " + _lockFirst.Key.ToString() + "/" + _lockFirst.Need.ToString();
                     }
                 }
             }
