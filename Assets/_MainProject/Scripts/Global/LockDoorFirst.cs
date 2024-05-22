@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LockDoor : MonoBehaviour
+public class LockDoorFirst : MonoBehaviour
 {
     private GameObject player;
     private Component[] meshes;
     public int Need = 3;
     public int Key = 0;
-    
+    public bool FirstLock;
 
     public bool isOpening;
 
@@ -16,6 +16,7 @@ public class LockDoor : MonoBehaviour
     {
         player = GameObject.Find("FirstPersonController");
         meshes = gameObject.GetComponentsInChildren<MeshCollider>();
+        FirstLock = false;
     }
 
     // Update is called once per frame
@@ -25,6 +26,7 @@ public class LockDoor : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E) && isOpening == false && Key >= Need)
             {
+                FirstLock = true;
                 StartCoroutine(OpenDoor());
             }
         }

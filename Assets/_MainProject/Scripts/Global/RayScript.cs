@@ -10,6 +10,7 @@ public class RayScript : MonoBehaviour
     public GameObject player;
     private Camera camera;
     public GameObject Door;
+    public GameObject FirstDoor;
     public TextMeshProUGUI KeyText;
 
     private void Start()
@@ -34,12 +35,23 @@ public class RayScript : MonoBehaviour
             if(hit.collider.tag == ("Key"))//подбор ключа
             {
                 var _lock = Door.GetComponent<LockDoor>();
+                var _lockFirst = FirstDoor.GetComponent<LockDoorFirst>();
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    Destroy(hit.collider.gameObject);
-                    CollectText.SetActive(false);
-                    _lock.Key++;
-                    KeyText.text = "Keys:" +_lock.Key.ToString() + "/" + _lock.Need.ToString();
+                    if (_lockFirst.FirstLock == true)
+                    {
+                        Destroy(hit.collider.gameObject);
+                        CollectText.SetActive(false);
+                        _lock.Key++;
+                        KeyText.text = "Keys:" + _lock.Key.ToString() + "/" + _lock.Need.ToString();
+                    }
+                    else
+                    {
+                        Destroy(hit.collider.gameObject);
+                        CollectText.SetActive(false);
+                        _lockFirst.Key++;
+                        KeyText.text = "Keys:" + _lockFirst.Key.ToString() + "/" + _lockFirst.Need.ToString();
+                    }
                 }
             }
             if (hit.collider.tag == ("Battery"))//подбор батарейки
