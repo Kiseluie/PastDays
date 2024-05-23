@@ -113,6 +113,8 @@ public class CerberusAI : MonoBehaviour
     private IEnumerator PlayJumpScareAndReload()
     {
         StartCoroutine(WaitHalfSecond());
+
+
         yield return new WaitForSeconds(jumpscare.clip.length);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
@@ -134,7 +136,6 @@ public class CerberusAI : MonoBehaviour
     }
 
 
-
     void TiltCameraUpwards()
     {
         mainCamera.Rotate(-tiltAngle, 0, 0, Space.Self);
@@ -154,18 +155,8 @@ public class CerberusAI : MonoBehaviour
         jumpscare.Play();
 
         yield return new WaitForSeconds(0.1f);
-        
         Destroy(shadowMonster);
         _jumpScarePlayed = true;
-
-        yield return new WaitForSeconds(jumpscare.clip.length * (2f / 3f));
-        blackout.SetActive(true);
-
-        yield return new WaitForSeconds(1.5f);
-        kidPicture.SetActive(true);
-
-        yield return new WaitForSeconds(1f);
-        restartText.SetActive(true);
 
     }
 }
