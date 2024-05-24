@@ -20,7 +20,7 @@ public class ChanceShadowAttack : MonoBehaviour
 
     private void Start()
     {
-        shadowAI = GetComponent<ShadowAI>();
+        shadowAI = shadowPrefab.GetComponent<ShadowAI>();
         StartCoroutine(SoundAndSpawnRoutine());
     }
 
@@ -47,7 +47,9 @@ public class ChanceShadowAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         if (!shadowAI._jumpScarePlayed)
-        Destroy(shadow);
+        {
+            Destroy(shadow);
+        }
     }
 
 

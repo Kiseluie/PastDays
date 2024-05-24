@@ -2923,7 +2923,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Group 18\n\nTeam 4\n\nTimur Kirdakov                     \n\nDmitry Sergeev\n\nAlexandr
+  m_text: "Flaslight-18\n\nTimur Kirdakov                     \n\nDmitry Sergeev\n\nAlexandr
     Nikitin\n\nArtemy Meleteev"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ea83db145e2150469cb5e35e35b4a5c, type: 2}
