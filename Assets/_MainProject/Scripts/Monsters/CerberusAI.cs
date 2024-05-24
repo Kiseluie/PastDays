@@ -31,11 +31,22 @@ public class CerberusAI : MonoBehaviour
     private bool _isRbDestroyed = false;
     private bool _isFaced = false;
 
+    public GameObject whiteBlind;
+    public GameObject blackout;
+    public GameObject kidPicture;
+    public GameObject restartText;
+
 
 
 
     void Start()
     {
+        whiteBlind = GameObject.FindGameObjectWithTag("whiteblindtag");
+        blackout = GameObject.FindGameObjectWithTag("blackouttag");
+        kidPicture = GameObject.FindGameObjectWithTag("kidphototag");
+        restartText = GameObject.FindGameObjectWithTag("restarttexttag");
+
+
         spotpoint = GameObject.FindGameObjectWithTag("spotpointtagCerberus");
         playerObject = GameObject.FindGameObjectWithTag("Player");
         stepsAudioSource = GameObject.FindGameObjectWithTag("audioObjectTag");
@@ -124,6 +135,7 @@ public class CerberusAI : MonoBehaviour
         mainCamera.position = originalCameraPosition;
     }
 
+
     void TiltCameraUpwards()
     {
         mainCamera.Rotate(-tiltAngle, 0, 0, Space.Self);
@@ -141,6 +153,7 @@ public class CerberusAI : MonoBehaviour
     private IEnumerator WaitHalfSecond()
     {
         jumpscare.Play();
+
         yield return new WaitForSeconds(0.1f);
         Destroy(shadowMonster);
         _jumpScarePlayed = true;
