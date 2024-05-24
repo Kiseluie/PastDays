@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LockDoorFirst : MonoBehaviour
 {
+    [SerializeField] private AudioClip[] audioClips;
     private GameObject player;
     private Component[] meshes;
     public int Need = 3;
@@ -11,6 +12,8 @@ public class LockDoorFirst : MonoBehaviour
     public bool FirstLock;
 
     public bool isOpening;
+
+    [SerializeField] private AudioSource AudioSource;
 
     private void Start()
     {
@@ -26,6 +29,7 @@ public class LockDoorFirst : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E) && isOpening == false && Key >= Need)
             {
+                AudioSource.PlayOneShot(audioClips[0]); 
                 FirstLock = true;
                 StartCoroutine(OpenDoor());
             }
