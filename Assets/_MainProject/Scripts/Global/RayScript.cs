@@ -9,7 +9,7 @@ public class RayScript : MonoBehaviour
     public GameObject CollectText;
     public GameObject player;
     private Camera camera;
-    public GameObject Door;
+    public GameObject LockDoor;
     public GameObject FirstDoor;
     public TextMeshProUGUI KeyText;
 
@@ -34,7 +34,7 @@ public class RayScript : MonoBehaviour
             }
             if(hit.collider.tag == ("Key"))//подбор ключа
             {
-                var _lock = Door.GetComponent<LockDoor>();
+                var _lock = LockDoor.GetComponent<LockDoor>();
                 var _lockFirst = FirstDoor.GetComponent<LockDoorFirst>();
                 if (Input.GetKeyDown(KeyCode.E))
                 {
