@@ -78,11 +78,6 @@ public class ShadowAI : MonoBehaviour
         {
             Entity.destination = player.position;
         }
-
-        if (player.position.y < -3)
-        {
-            SceneManager.LoadScene(1);
-        }
     }
 
     void LookAtAndRaiseCamera()
