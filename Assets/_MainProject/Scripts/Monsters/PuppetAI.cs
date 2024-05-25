@@ -77,11 +77,6 @@ public class PuppetAI : MonoBehaviour
         {
             puppetEntity.destination = player.position;
         }
-
-        if (player.position.y < -3)
-        {
-            SceneManager.LoadScene(1);
-        }
     }
 
     void LookAtAndRaiseCamera()
@@ -108,7 +103,7 @@ public class PuppetAI : MonoBehaviour
         
 
         yield return new WaitForSeconds(jumpscare.clip.length);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(4);
     }
     IEnumerator ShakeCamera()
     {

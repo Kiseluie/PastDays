@@ -17,6 +17,7 @@ using UnityEngine.UI;
 public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
+    public bool playerIsAlive = true;
 
     #region Camera Movement Variables
 

@@ -38,8 +38,11 @@ public class ShadowAI : MonoBehaviour
 
     private bool _isRbDestroyed = false;
 
+    private bool _playerIsAlived = true;
+
     void Start()
     {
+        _playerIsAlived = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>().playerIsAlive;
         spotpoint = GameObject.FindGameObjectWithTag("spotpointtag");
         playerObject = GameObject.FindGameObjectWithTag("Player");
         firstPersonController = playerObject.GetComponent<FirstPersonController>();
@@ -102,7 +105,7 @@ public class ShadowAI : MonoBehaviour
         jumpscare.Play();
 
         yield return new WaitForSeconds(jumpscare.clip.length);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(4);
     }
     IEnumerator ShakeCamera()
     {
