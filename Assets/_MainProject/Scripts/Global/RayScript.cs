@@ -14,13 +14,16 @@ public class RayScript : MonoBehaviour
 
     public int keys = 0;
 
+    [SerializeField] private AudioClip[] audioClips;
     [SerializeField] public GameObject KeyImage;
+    private AudioSource audioSource;
     private Camera rayCamera;
 
     private void Start()
     {
         CollectText.SetActive(false);
         rayCamera = Camera.main;
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -31,6 +34,7 @@ public class RayScript : MonoBehaviour
             if (hit.collider.tag == ("Battery") || hit.collider.tag == ("Key"))//появляется надпись "press E to collect"
             {
                 CollectText.SetActive(true);
+                
             }
             else
             {
@@ -44,6 +48,7 @@ public class RayScript : MonoBehaviour
                     keys++;
                     Destroy(hit.collider.gameObject);
                     CollectText.SetActive(false);
+                    audioSource.PlayOneShot(audioClips[0]);
                 }
             }
             if (hit.collider.tag == ("Battery"))//подбор батарейки
@@ -54,6 +59,7 @@ public class RayScript : MonoBehaviour
                     _addBattery.addBattery();
                     Destroy(hit.collider.gameObject);
                     CollectText.SetActive(false);
+                    audioSource.PlayOneShot(audioClips[0]);
                 }
             }
         }
