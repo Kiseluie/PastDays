@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
 public class CerberusAI : MonoBehaviour
@@ -18,6 +19,9 @@ public class CerberusAI : MonoBehaviour
     public float shakeMagnitude = 0.1f;
     public GameObject playerObject;
     public bool _jumpScarePlayed = false;
+
+    public GameObject deathUI;
+
 
     private GameObject spotpoint;
     private Vector3 originalCameraPosition;
@@ -43,7 +47,7 @@ public class CerberusAI : MonoBehaviour
         blackout = GameObject.FindGameObjectWithTag("blackouttag");
         kidPicture = GameObject.FindGameObjectWithTag("kidphototag");
         restartText = GameObject.FindGameObjectWithTag("restarttexttag");
-
+        deathUI = GameObject.FindGameObjectWithTag("deathuitag");
 
         spotpoint = GameObject.FindGameObjectWithTag("spotpointtagCerberus");
         playerObject = GameObject.FindGameObjectWithTag("Player");
@@ -112,7 +116,10 @@ public class CerberusAI : MonoBehaviour
         StartCoroutine(WaitHalfSecond());
 
 
-        yield return new WaitForSeconds(jumpscare.clip.length);
+
+        yield return new WaitForSeconds(2.3f);
+        deathUI.SetActive(true);
+        yield return new WaitForSeconds(10f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     IEnumerator ShakeCamera()
