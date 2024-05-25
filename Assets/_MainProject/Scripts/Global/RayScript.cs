@@ -8,20 +8,24 @@ public class RayScript : MonoBehaviour
     public int distance;
     public GameObject CollectText;
     public GameObject player;
-    private Camera camera;
-    public GameObject Door;
-    public GameObject FirstDoor;
-    public TextMeshProUGUI KeyText;
+    //public GameObject Door;
+    //public GameObject FirstDoor;
+    //public TextMeshProUGUI KeyText;
+
+    public int keys = 0;
+
+    [SerializeField] public GameObject KeyImage;
+    private Camera rayCamera;
 
     private void Start()
     {
         CollectText.SetActive(false);
-        camera = Camera.main;
+        rayCamera = Camera.main;
     }
     void Update()
     {
         RaycastHit hit;
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = rayCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, distance))
         {
             if (hit.collider.tag == ("Battery") || hit.collider.tag == ("Key"))//появляется надпись "press E to collect"
@@ -34,24 +38,12 @@ public class RayScript : MonoBehaviour
             }
             if(hit.collider.tag == ("Key"))//подбор ключа
             {
-                var _lock = Door.GetComponent<LockDoor>();
-                var _lockFirst = FirstDoor.GetComponent<LockDoorFirst>();
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    if (_lockFirst.FirstLock == true)
-                    {
-                        Destroy(hit.collider.gameObject);
-                        CollectText.SetActive(false);
-                        _lock.Key++;
-                        KeyText.text = "Keys: " + _lock.Key.ToString() + "/" + _lock.Need.ToString();
-                    }
-                    else
-                    {
-                        Destroy(hit.collider.gameObject);
-                        CollectText.SetActive(false);
-                        _lockFirst.Key++;
-                        KeyText.text = "Keys: " + _lockFirst.Key.ToString() + "/" + _lockFirst.Need.ToString();
-                    }
+                    KeyImage.SetActive(true);
+                    keys++;
+                    Destroy(hit.collider.gameObject);
+                    CollectText.SetActive(false);
                 }
             }
             if (hit.collider.tag == ("Battery"))//подбор батарейки

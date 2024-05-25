@@ -8,12 +8,13 @@ public class Stalker : MonoBehaviour
     public bool WillDestroyed = false;
 
     private GameObject player;
-    private GameObject audio;
+    private Component screamAudio;
+    private bool Dieing;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("FirstPersonController");
-        audio = GameObject.Find("Jumpscare");
+        screamAudio = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -31,10 +32,22 @@ public class Stalker : MonoBehaviour
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
         }
 
-        if(Vector3.Distance(transform.position, player.transform.position) <= DisapearDistance && WillDestroyed)
+        if(Vector3.Distance(transform.position, player.transform.position) <= DisapearDistance && WillDestroyed && !Dieing)
         {
-            audio.GetComponent<AudioSource>().Play();
-            Destroy(gameObject);
+            StartCoroutine(WaitDie());  
         }
+    }
+
+    IEnumerator WaitDie()
+    {
+        Dieing = true;
+        screamAudio.GetComponent<AudioSource>().Play();
+        Component[] meshes = gameObject.GetComponentsInChildren<MeshRenderer>();
+        foreach(Component mesh in meshes)
+        {
+            mesh.GetComponent<MeshRenderer>().enabled = false;
+        }
+        yield return new WaitForSeconds(4);
+        Destroy(gameObject);
     }
 }

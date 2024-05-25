@@ -10,6 +10,7 @@ public class Door : MonoBehaviour
     private Component[] meshes;
     [SerializeField] private AudioSource AudioSource;
 
+    public bool isLocked;
     public bool isOpening;
 
     private void Start()
@@ -24,11 +25,37 @@ public class Door : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E) && isOpening == false)
             {
-                AudioSource.PlayOneShot(audioClips[0]);
-                StartCoroutine(OpenDoor());
+                if (!isLocked)
+                {
+                    AudioSource.PlayOneShot(audioClips[0]);
+                    StartCoroutine(OpenDoor());
+                }
+                else if (isLocked)
+                {
+                    
+                    UnlockDoor();
+                }
+
             }
+
         }
 
+    }
+
+    private void UnlockDoor()
+    {
+        if(player.GetComponent<RayScript>().keys > 0)
+        {
+            AudioSource.PlayOneShot(audioClips[1]);
+            isLocked = false;
+            player.GetComponent<RayScript>().keys--;
+            player.GetComponent<RayScript>().KeyImage.SetActive(false);
+        }
+        else
+        {
+            AudioSource.PlayOneShot(audioClips[2]);
+            gameObject.GetComponent<DialogDoor>().StartDialog();
+        }
     }
 
 
