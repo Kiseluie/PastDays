@@ -55,8 +55,8 @@ MonoBehaviour:
   player: {fileID: 4459864850019384738, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
   catchingRange: 1.52
   chaseRange: 100
-  heightOffset: 1.31
-  tiltAngle: 17.8
+  heightOffset: 0
+  tiltAngle: 0
   mainCamera: {fileID: 0}
   ShadowMonster: {fileID: 0}
   shakeDuration: 0

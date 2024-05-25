@@ -6,7 +6,7 @@ using UnityEngine.Rendering.PostProcessing;
 public class StressManager : MonoBehaviour
 {
     public float maxStress = 100f;
-    private float stressLevel = 0f;
+    public float stressLevel = 0f;
     public Flashlight flashlight;
     public float speedIncreaseSpeed = 4f;
     public float speedDecreaseSpeed = 2f;

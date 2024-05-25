@@ -11,8 +11,7 @@ public class CerberusAI : MonoBehaviour
     public Transform player;
     public float catchingRange = 2f;
     public float chaseRange = 10;
-    public float heightOffset = 1.0f;
-    public float tiltAngle = 30f;
+    public float tiltAngle = 0f;
     public Transform mainCamera;
     public Transform cerberusMonster;
     public float shakeDuration;
@@ -24,7 +23,6 @@ public class CerberusAI : MonoBehaviour
     private Vector3 originalCameraPosition;
     private FirstPersonController firstPersonController;
     private Rigidbody rb;
-    private ChanceShadowAttack chanceAttackScript;
     private GameObject stepsAudioSource;
     private GameObject shadowMonster;
 
@@ -102,7 +100,6 @@ public class CerberusAI : MonoBehaviour
         mainCamera.LookAt(spotpoint.transform.position);
 
         Vector3 cameraPosition = mainCamera.position;
-        cameraPosition.y += heightOffset;
         mainCamera.position = cameraPosition;
 
         TiltCameraUpwards();

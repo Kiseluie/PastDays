@@ -9,6 +9,7 @@ public class DoorInfected : MonoBehaviour
     public float delay = 60f;
     public float delayMonsterMin = 5f;
     public float delayMonsterMax = 10f;
+    public float safeDelay = 1.8f;
     public AudioSource breathing;
     public GameObject monsterCerberusPrefab;
     public float chanceDoorInfected = 0.3f;
@@ -30,25 +31,7 @@ public class DoorInfected : MonoBehaviour
     {
         doorIsOpened = DoorComponent.isOpening;
 
-        if (doorIsImposter)
-        {
-            if (!breathing.isPlaying)
-            {
-                breathing.Play();
-            }
-
-            if (Input.GetKeyDown(KeyCode.E) && !monsterSpawned)
-            {
-                SpawnMonster();
-            }
-        }
-        else
-        {
-            if (breathing.isPlaying)
-            {
-                breathing.Stop();
-            }
-        }
+        StartCoroutine(doorIsImposterActions());
     }
 
     private void SpawnMonster()
@@ -74,6 +57,30 @@ public class DoorInfected : MonoBehaviour
                 monsterSpawned = false;
             }
 
+        }
+    }
+
+    private IEnumerator doorIsImposterActions() 
+    {
+        if (doorIsImposter)
+        {
+            if (!breathing.isPlaying)
+            {
+                breathing.Play();
+            }
+
+            yield return new WaitForSeconds(safeDelay); 
+            if (Input.GetKeyDown(KeyCode.E) && !monsterSpawned)
+            {
+                SpawnMonster();
+            }
+        }
+        else
+        {
+            if (breathing.isPlaying)
+            {
+                breathing.Stop();
+            }
         }
     }
 

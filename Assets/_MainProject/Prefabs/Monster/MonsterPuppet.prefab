@@ -159,9 +159,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 20
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -178,8 +178,8 @@ AudioSource:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 0
+      time: 0.94203186
+      value: 0.2634735
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -366,6 +366,7 @@ MonoBehaviour:
   shakeMagnitude: 0.1
   playerObject: {fileID: 0}
   _jumpScarePlayed: 0
+  uiManager: {fileID: 0}
 --- !u!82 &5351848245354344834
 AudioSource:
   m_ObjectHideFlags: 0

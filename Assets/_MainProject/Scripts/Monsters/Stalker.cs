@@ -9,14 +9,16 @@ public class Stalker : MonoBehaviour
 
     private GameObject player;
     private GameObject audio;
-    // Start is called before the first frame update
+    private StressManager stress;
+
     void Start()
     {
         player = GameObject.Find("FirstPersonController");
         audio = GameObject.Find("Jumpscare");
+        stress = player.GetComponent<StressManager>();
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.LookAt(player.transform);
@@ -33,6 +35,7 @@ public class Stalker : MonoBehaviour
 
         if(Vector3.Distance(transform.position, player.transform.position) <= DisapearDistance && WillDestroyed)
         {
+            stress.stressLevel += 60;
             audio.GetComponent<AudioSource>().Play();
             Destroy(gameObject);
         }

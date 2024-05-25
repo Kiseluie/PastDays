@@ -7,23 +7,18 @@ public class CameraShake : MonoBehaviour
     public float shakeDuration = 0.5f;
     public float shakeMagnitude = 0.7f;
     private Vector3 originalPos;
-    private GameObject mainCamera; // дл€ хранени€ ссылки на основную камеру
-    private GameObject jumpscareCamera; // дл€ хранени€ ссылки на камеру jumpscare
+    private GameObject mainCamera;
+    private GameObject jumpscareCamera;
 
     void Awake()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         jumpscareCamera = GameObject.FindGameObjectWithTag("newCamera");
         originalPos = transform.localPosition;
-
-        // ”бедитесь, что камера jumpscare отключена с самого начала
-
-
     }
 
     public void StartShake()
     {
-        // ƒеактивируем основную камеру и активируем камеру jumpscare
         if (mainCamera != null)
             mainCamera.SetActive(false);
 
@@ -41,7 +36,6 @@ public class CameraShake : MonoBehaviour
         {
             Vector3 camPos = originalPos + Random.insideUnitSphere * shakeMagnitude;
 
-            // ѕредотвращаем изменение Z позиции камеры
             camPos.z = originalPos.z;
 
             transform.localPosition = camPos;
